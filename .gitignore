@@ -1,3 +1,9 @@
+# Logfiles
+*cloudimg-console.log
+
+# Vagrant folder
+.vagrant
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db

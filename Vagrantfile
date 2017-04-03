@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "ubuntu/yakkety64"
+  config.vm.box = "ubuntu/xenial64"
 
   config.vm.define "webserver" do |webserver|
 
@@ -19,6 +19,25 @@ Vagrant.configure("2") do |config|
     end
 
     webserver.vm.provision :shell, path: "./scripts/webserver.sh"
+
+  end
+
+  config.vm.define "mongodb" do |mongo|
+
+    mongo.vm.hostname = 'mongodo'
+
+    mongo.vm.network :private_network, ip: "192.168.56.201"
+    #mongo.vm.network :forwarded_port, guest: 22, host: 10201, id: "ssh"
+
+    mongo.vm.provider :virtualbox do |v|
+
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--memory", 1024]
+      v.customize ["modifyvm", :id, "--name", "mongodb"]
+
+    end
+
+    mongo.vm.provision :shell, path: "./scripts/mongodb.sh"
 
   end
 

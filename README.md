@@ -1,6 +1,6 @@
 # Web Development Kit
 
-This Kit *contains* five Ubuntu 16.10 servers:
+This Kit *contains* five Ubuntu 16.04 servers:
 
  1. Webserver
  2. Elasticsearch Cluster Master One
