@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
     webserver.vm.hostname = 'webserver'
 
     webserver.vm.network :private_network, ip: "192.168.56.100"
-    webserver.vm.network :forwarded_port, guest: 22, host: 10120, id: "ssh"
+    #webserver.vm.network :forwarded_port, guest: 22, host: 10120, id: "ssh"
     #webserver.vm.network :forwarded_port, guest: 80, host: 80, id: "apache"
 
     webserver.vm.provider :virtualbox do |v|
@@ -32,7 +32,7 @@ Vagrant.configure("2") do |config|
     mongo.vm.provider :virtualbox do |v|
 
       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-      v.customize ["modifyvm", :id, "--memory", 1024]
+      v.customize ["modifyvm", :id, "--memory", 4096]
       v.customize ["modifyvm", :id, "--name", "mongodb"]
 
     end
@@ -46,9 +46,9 @@ Vagrant.configure("2") do |config|
     elasticOne.vm.hostname = 'elastic-master-one'
 
     elasticOne.vm.network :private_network, ip: "192.168.56.101"
-    elasticOne.vm.network :forwarded_port, guest: 22, host: 10221, id: "ssh"
-    elasticOne.vm.network :forwarded_port, guest: 9200, host: 9201, id: "elastic"
-    elasticOne.vm.network :forwarded_port, guest: 5601, host: 5601, id: "kibana"
+    #elasticOne.vm.network :forwarded_port, guest: 22, host: 10221, id: "ssh"
+    #elasticOne.vm.network :forwarded_port, guest: 9200, host: 9201, id: "elastic"
+    #elasticOne.vm.network :forwarded_port, guest: 5601, host: 5601, id: "kibana"
 
     elasticOne.vm.provider :virtualbox do |v|
 
@@ -67,9 +67,9 @@ Vagrant.configure("2") do |config|
     elasticTwo.vm.hostname = 'elastic-master-two'
 
     elasticTwo.vm.network :private_network, ip: "192.168.56.102"
-    elasticTwo.vm.network :forwarded_port, guest: 22, host: 10222, id: "ssh"
-    elasticTwo.vm.network :forwarded_port, guest: 9200, host: 9202, id: "elastic"
-    elasticTwo.vm.network :forwarded_port, guest: 5601, host: 5602, id: "kibana"
+    #elasticTwo.vm.network :forwarded_port, guest: 22, host: 10222, id: "ssh"
+    #elasticTwo.vm.network :forwarded_port, guest: 9200, host: 9202, id: "elastic"
+    #elasticTwo.vm.network :forwarded_port, guest: 5601, host: 5602, id: "kibana"
 
     elasticTwo.vm.provider :virtualbox do |v|
 
@@ -88,8 +88,8 @@ Vagrant.configure("2") do |config|
     nodeOne.vm.hostname = 'node-one'
 
     nodeOne.vm.network :private_network, ip: "192.168.56.111"
-    nodeOne.vm.network :forwarded_port, guest: 22, host: 10501, id: "ssh"
-    nodeOne.vm.network :forwarded_port, guest: 9200, host: 9203, id: "elastic"
+    #nodeOne.vm.network :forwarded_port, guest: 22, host: 10501, id: "ssh"
+    #nodeOne.vm.network :forwarded_port, guest: 9200, host: 9203, id: "elastic"
 
     nodeOne.vm.provider :virtualbox do |v|
 
@@ -108,8 +108,8 @@ Vagrant.configure("2") do |config|
     nodeTwo.vm.hostname = 'node-two'
 
     nodeTwo.vm.network :private_network, ip: "192.168.56.112"
-    nodeTwo.vm.network :forwarded_port, guest: 22, host: 10502, id: "ssh"
-    nodeTwo.vm.network :forwarded_port, guest: 9200, host: 9204, id: "elastic"
+    #nodeTwo.vm.network :forwarded_port, guest: 22, host: 10502, id: "ssh"
+    #nodeTwo.vm.network :forwarded_port, guest: 9200, host: 9204, id: "elastic"
 
     nodeTwo.vm.provider :virtualbox do |v|
 
