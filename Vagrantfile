@@ -7,12 +7,12 @@ Vagrant.configure("2") do |config|
     webserver.vm.hostname = 'webserver'
 
     webserver.vm.network :private_network, ip: "192.168.56.100"
-    webserver.vm.network :forwarded_port, guest: 22, host: 10120, id: "ssh"
+    #webserver.vm.network :forwarded_port, guest: 22, host: 10120, id: "ssh"
     #webserver.vm.network :forwarded_port, guest: 80, host: 80, id: "apache"
 
     webserver.vm.provider :virtualbox do |v|
 
-      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      #v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       v.customize ["modifyvm", :id, "--memory", 1024]
       v.customize ["modifyvm", :id, "--name", "webserver"]
 
@@ -31,7 +31,7 @@ Vagrant.configure("2") do |config|
 
     mongo.vm.provider :virtualbox do |v|
 
-      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      #v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       v.customize ["modifyvm", :id, "--memory", 1024]
       v.customize ["modifyvm", :id, "--name", "mongodb"]
 
@@ -41,45 +41,44 @@ Vagrant.configure("2") do |config|
 
   end
 
-  config.vm.define "elastic-master-one" do |elasticOne|
+  config.vm.define "master-one" do |masterOne|
 
-    elasticOne.vm.hostname = 'elastic-master-one'
+    masterOne.vm.hostname = 'master-one'
 
-    elasticOne.vm.network :private_network, ip: "192.168.56.101"
-    elasticOne.vm.network :forwarded_port, guest: 22, host: 10221, id: "ssh"
-    elasticOne.vm.network :forwarded_port, guest: 9200, host: 9201, id: "elastic"
-    elasticOne.vm.network :forwarded_port, guest: 5601, host: 5601, id: "kibana"
+    masterOne.vm.network :private_network, ip: "192.168.56.101"
+    #masterOne.vm.network :forwarded_port, guest: 22, host: 10221, id: "ssh"
+    #masterOne.vm.network :forwarded_port, guest: 9200, host: 9201, id: "elastic"
+    #masterOne.vm.network :forwarded_port, guest: 5601, host: 5601, id: "kibana"
 
-    elasticOne.vm.provider :virtualbox do |v|
+    masterOne.vm.provider :virtualbox do |v|
 
-      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      #v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       v.customize ["modifyvm", :id, "--memory", 4096]
-      v.customize ["modifyvm", :id, "--name", "elastic-master-one"]
+      v.customize ["modifyvm", :id, "--name", "master-one"]
 
     end
 
-    elasticOne.vm.provision :shell, path: "./scripts/elastic-master-one.sh"
-
+    masterOne.vm.provision :shell, path: "./scripts/master-one.sh"
   end
 
-  config.vm.define "elastic-master-two" do |elasticTwo|
+  config.vm.define "master-two" do |masterTwo|
 
-    elasticTwo.vm.hostname = 'elastic-master-two'
+    masterTwo.vm.hostname = 'master-two'
 
-    elasticTwo.vm.network :private_network, ip: "192.168.56.102"
-    elasticTwo.vm.network :forwarded_port, guest: 22, host: 10222, id: "ssh"
-    elasticTwo.vm.network :forwarded_port, guest: 9200, host: 9202, id: "elastic"
-    elasticTwo.vm.network :forwarded_port, guest: 5601, host: 5602, id: "kibana"
+    masterTwo.vm.network :private_network, ip: "192.168.56.102"
+    #masterTwo.vm.network :forwarded_port, guest: 22, host: 10222, id: "ssh"
+    #masterTwo.vm.network :forwarded_port, guest: 9200, host: 9202, id: "elastic"
+    #masterTwo.vm.network :forwarded_port, guest: 5601, host: 5602, id: "kibana"
 
-    elasticTwo.vm.provider :virtualbox do |v|
+    masterTwo.vm.provider :virtualbox do |v|
 
-      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      #v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       v.customize ["modifyvm", :id, "--memory", 4096]
-      v.customize ["modifyvm", :id, "--name", "elastic-master-two"]
+      v.customize ["modifyvm", :id, "--name", "master-two"]
 
     end
 
-    elasticTwo.vm.provision :shell, path: "./scripts/elastic-master-two.sh"
+    masterTwo.vm.provision :shell, path: "./scripts/master-two.sh"
 
   end
 
@@ -88,18 +87,18 @@ Vagrant.configure("2") do |config|
     nodeOne.vm.hostname = 'node-one'
 
     nodeOne.vm.network :private_network, ip: "192.168.56.111"
-    nodeOne.vm.network :forwarded_port, guest: 22, host: 10501, id: "ssh"
-    nodeOne.vm.network :forwarded_port, guest: 9200, host: 9203, id: "elastic"
+    #nodeOne.vm.network :forwarded_port, guest: 22, host: 10501, id: "ssh"
+    #nodeOne.vm.network :forwarded_port, guest: 9200, host: 9203, id: "elastic"
 
     nodeOne.vm.provider :virtualbox do |v|
 
-      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      #v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       v.customize ["modifyvm", :id, "--memory", 4096]
       v.customize ["modifyvm", :id, "--name", "node-one"]
 
     end
 
-    nodeOne.vm.provision :shell, path: "./scripts/elastic-node-one.sh"
+    nodeOne.vm.provision :shell, path: "./scripts/node-one.sh"
 
   end
 
@@ -108,18 +107,18 @@ Vagrant.configure("2") do |config|
     nodeTwo.vm.hostname = 'node-two'
 
     nodeTwo.vm.network :private_network, ip: "192.168.56.112"
-    nodeTwo.vm.network :forwarded_port, guest: 22, host: 10502, id: "ssh"
-    nodeTwo.vm.network :forwarded_port, guest: 9200, host: 9204, id: "elastic"
+    #nodeTwo.vm.network :forwarded_port, guest: 22, host: 10502, id: "ssh"
+    #nodeTwo.vm.network :forwarded_port, guest: 9200, host: 9204, id: "elastic"
 
     nodeTwo.vm.provider :virtualbox do |v|
 
-      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      #v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       v.customize ["modifyvm", :id, "--memory", 4096]
       v.customize ["modifyvm", :id, "--name", "node-two"]
 
     end
 
-    nodeTwo.vm.provision :shell, path: "./scripts/elastic-node-two.sh"
+    nodeTwo.vm.provision :shell, path: "./scripts/node-two.sh"
 
   end
 
