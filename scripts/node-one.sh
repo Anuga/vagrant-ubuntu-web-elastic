@@ -2,11 +2,14 @@
 
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 
-echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-5.x.list
+echo "deb https://artifacts.elastic.co/packages/6.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-6.x.list
+
+apt-get install apt-transport-https
 
 /vagrant/scripts/update_upgrade_remove_clean.sh
 
-apt-get install -y apt-transport-https openjdk-8-jre elasticsearch
+apt-get install -y \
+elasticsearch
 
 update-rc.d elasticsearch defaults 95 10
 
