@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "mongo" do |mongo|
-    mongo.vm.hostname = 'mongo'
+    mongo.vm.hostname = "mongo"
     mongo.vm.network :private_network, ip: "192.168.56.201"
     # mongo.vm.network :forwarded_port, guest: 22, host: 10201, id: "ssh"
     # mongo.vm.network :forwarded_port, guest: 27017, host: 27017, id: "mongod-mongos"
