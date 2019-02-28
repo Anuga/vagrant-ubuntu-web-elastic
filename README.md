@@ -29,7 +29,7 @@ Vagrant will also run a bash script that will install the following software dep
 
 - Apache 2.4.x, PHP 7.2.x, on the webserver.
 - Elasticsearch 6.x, on the elastic servers.
-- MongoDB 6.x, on the mongodb server.
+- MongoDB 4.x, on the mongodb server.
 
 Pre-configured Elastic files are automatically copied.
 Pre-configured MongoDB files are automatically copied.
